@@ -1,0 +1,259 @@
+---
+title: "Working with data frames in R (1)"
+author: "Matt O'Donnell"
+date: "Jan 22, 2016"
+
+output:
+  html_document:
+    theme: united
+    toc: yes
+    toc_depth: 4
+    keep_md: true
+---
+
+
+## What are data frames?
+
+Data frames are tables that hold data that consist of __rows__ and __columns__, just like a spreadsheet. They are most likely the primary way you will access, manipulate and plot your data from while using R.
+
+R includes a series of included data sets that you can find in the datasets library. Type `library(help='datasets')` to see a list of what is there. To get started we'll use the __mtcars__ dataset, which you can find out about by typing `?mtcars`.
+
+> The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+Load the data into your workspace with `data(mtcars)`
+
+```{r}
+data(mtcars)
+head(mtcars)   # this will show you the first 6 rows by default
+```
+
+Data frames are tables like a spreadsheet where rows are 'observations' (e.g. subjects, trials, messages) and columns are 'variables' (e.g. measured characteristics, features)
+
+You can also see the whole data by typing `mtcars`. `head` and `tail` will give you the first and last __n__ rows, e.g.
+
+```{r}
+head(mtcars,3)  # first three rows
+```
+
+```{r}
+tail(mtcars,3)  # last three rows
+```
+
+### Get the names of the columns in a dataframe
+
+```{r}
+colnames(mtcars)
+```
+
+### Get the values from a single column
+
+1. by name
+
+```{r}
+mtcars$wt
+```
+
+2. by using indexing with the syntax <code>DF[row, column]</code> - indexing starts from 1 and leaving either 'row' or 'column' blank will get all values in that row or column
+
+```{r}
+mtcars[,1]  # gets the first column
+```
+
+which is the same as
+
+```{r}
+mtcars$mpg
+```
+
+ranges of rows or columns can be specified as:
+
+* continous ranges, e.g. `df[1:5,]` means rows 1,2,3,4&5
+* specific indices using c(), e.g. `df[c(1,3,5,11),]` means rows 1,3,5 & 11
+* by a combination e.g., `df[c(1:3,7,11,15),]` means rows 1,2,3,7,11&15
+* by column or rowname, e.g. `df[,c('mpg','wt)]` means columns 'mpg' and 'wt'
+
+
+```{r}
+mtcars[1:5,5] # get the data from the fifth column for the first five rows
+```
+
+* Combining more than one row and more than one column when indexing a data frame will return another data frame. For example, this will get the __mpg__ and __wt__ columns for the 3rd, 5th, 7th and 9th rows of the __mtcars__ data frame.
+
+
+```{r}
+mtcars[c(3,5,7,9),c('mpg','wt')]
+```
+
+
+## Summarizing columns in data frame
+
+#### 1. Specific columns:
+
+```{r}
+summary(mtcars$mpg)
+```
+
+
+```{r}
+summary(mtcars$gear)
+```
+
+
+#### 2. All columns in data frame:
+
+```{r}
+summary(mtcars)
+```
+
+## Plotting summary data
+
+#### 1. Histogram
+
+```{r}
+hist(mtcars$mpg)
+```
+
+#### 2. Pair scatter plot - if your columns are all numeric or categorical you can do a pairwise plot
+
+```{r}
+plot(mtcars)
+```
+
+## Plotting relationships between variables
+
+#### 1. using plot(x,y) and specifying each column
+
+```{r}
+plot(mtcars$wt, mtcars$mpg)
+```
+
+#### 2. using with()
+
+```{r}
+with(mtcars, plot(wt, mpg))
+```
+
+#### 3. using formula syntax - ``plot(y ~ x, data_frame)``
+
+```{r}
+plot(mpg ~ wt, mtcars)
+```
+
+## Correlations
+
+- ``cor`` will calculate correlation between pairs of vectors
+
+```{r}
+cor(mtcars$wt, mtcars$mpg)
+```
+
+```{r}
+with(mtcars, cor(wt, mpg))
+```
+
+- can also do ranges, e.g. ``cor(mtcars[,1:4])`` which does pairwise correlations of the first four columns of the data frame
+
+```{r}
+cor(mtcars[,1:4])
+```
+
+- or you can use the other methods of indexing discussed above
+
+```{r}
+cor(mtcars[,c('wt','mpg','cyl','disp')])
+```
+
+- if you just provide the dataframe all numeric columns will be correlated in pair wise fashion
+
+```{r}
+cor(mtcars)
+```
+
+
+## Linear regresson
+
+#### Fit a simple regression
+
+Using the same formula syntax ``DV ~ IV`` used above for plots
+
+```{r}
+md <- lm(mpg ~ wt, mtcars)
+
+summary(md)
+```
+
+
+#### Fit a multiple regression 
+
+Use ``+`` to add additional IVs
+
+```{r}
+md2 <- lm(mpg ~ wt + cyl, mtcars)
+
+summary(md2)
+```
+
+#### Examine an interaction
+
+Use ``*`` to interact two IVs
+
+```{r}
+md3 <- lm(mpg ~ wt * cyl, mtcars)
+
+summary(md3)
+```
+
+#### Compare models 
+
+The ``anova`` function takes two or more fitted models and does an F-test
+
+```{r}
+
+anova(md,md2,md3)
+
+```
+
+#### Add a regression line to a plot
+
+```{r}
+
+plot(mpg ~ wt, mtcars)
+abline(md, col='red')
+
+```
+
+
+## Aggregating data by a categorical variable
+
+Often you will have a grouping or factor variable and want to use that to summarize
+other variables by. For example, in the __mtcars__ data frame the cylinder (cyl) variable could be used to group the other variables to calculate the mean.
+
+Here we can get the mean weight for cars with 4, 6 and 8 cylinders. 
+
+```{r}
+
+aggregate(wt ~ cyl, mtcars, mean)    # formula, data_frame, summary function
+
+```
+
+Here we get the standard deviation of miles per gallon grouped by cylinders
+
+```{r}
+
+aggregate(mpg ~ cyl, mtcars, sd)
+
+```
+
+You can also get two or more groupings using the ``+`` syntax in the formula. For example, get the mean of MPG crossed by cylinders and number of gears:
+
+```{r}
+
+aggregate(mpg ~ cyl + gear, mtcars, mean)
+
+```
+
+```{r}
+
+aggregate(cbind(mpg, wt, disp) ~ cyl + gear, mtcars, mean)
+
+```

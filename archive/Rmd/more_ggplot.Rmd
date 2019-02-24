@@ -1,0 +1,21 @@
+---
+title: "More ggplot2"
+author: "Matt O'Donnell"
+date: "February 7, 2016"
+output: 
+  html_document:
+    theme: united
+    toc: true
+    toc_level: 4
+    toc_float: true
+    
+---
+
+
+
+
+```{r}
+
+ggplot(mtcars, aes(cyl,wt)) + stat_summary(fun.y=mean, geom='bar', aes(fill=factor(cyl))) + stat_summary(fun.data=mean_cl_boot, geom='errorbar', width=0.2)
+
+```

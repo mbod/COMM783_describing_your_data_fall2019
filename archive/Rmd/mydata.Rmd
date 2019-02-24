@@ -1,0 +1,52 @@
+---
+title: "My Data"
+author: "Matt O'Donnell"
+date: "January 29, 2016"
+knit: (function(inputFile, encoding) { 
+      out_dir <- '../html';
+      parts <- unlist(strsplit(inputFile,'/'));
+      inputFileName <- parts[length(parts)];
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), out_dir, 
+                        gsub(".Rmd",".html",inputFileName))) })
+
+output: html_document
+---
+
+## This is Facebook ego network data
+
+1. load in <span style="color: red; text-decoration: underline">data</span> and look at the top rows
+
+```{r}
+
+data(mtcars)
+df <- mtcars
+
+head(df)
+```
+
+2. List the variables in data
+
+```{r}
+
+colnames(df)
+
+```
+
+```{r}
+
+summary(df)
+
+```
+
+3. Plot car weight (wt) against miles per gallon (mpg)
+
+```{r, echo=FALSE}
+
+plot(mpg ~ wt, df)
+md <- lm(mpg ~ wt, df)
+abline(md, col='red')
+
+summary(md)
+```
