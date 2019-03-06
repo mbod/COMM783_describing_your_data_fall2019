@@ -153,12 +153,156 @@ Social Psychological and Personality Science, 6, 847-854.</li></ul> </td> </tr>
 
 ### Lab session
 
-<table> <thead> <tr> <td>Date seminar</td> <td>Topic</td>
+<table> <thead> <tr> <td>Date lab</td> <td>Topic</td>
 <td>Notebook/examples</td> </tr> </thead>
 
   <tbody>
 
   <!-- <tr> <td> *DATE* </td> <td> *TOPIC* </td> <td> *DUE* </td> <td> *READING*
-  </td> </tr> --> </tbody>
+  </td> </tr> --> 
+
+
+
+
+	<tr>
+		<td>8/29/2019</td>
+		<td>Getting set up and introduction to R and Github</td>
+		<td><b>** BEFORE LAB SESSION **</b>
+<ol>
+<li>Make sure you have the latest version of R installed (https://cran.r-project.org/)</li>
+<li>Install RStudio (https://www.rstudio.com/products/rstudio/download/)</li>
+<li>Setup a github account if you don't already have one (http://education.github.com)</li>
+<li>Post your github user id to appropriate discussion thread on canvas so others can find your repos</li>
+</ol>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td>9/5/2019</td>
+		<td>(R)Markdown and starting a github repo</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>9/12/2019</td>
+		<td>Data cleaning, manipulation and versioning</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>9/19/2019</td>
+		<td>RMarkdown, Pandoc, BibTex, Git branches and Github Pages</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>9/26/2019</td>
+		<td>Introduction to data visualization with <code>ggplot2</code></td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>10/3/2019</td>
+		<td>More visualization with ggplot</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>10/10/2019</td>
+		<td><b>*** FALL BREAK ***</b></td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>10/17/2019</td>
+		<td>Writing a paper with RMarkdown and Github
+			<ul><li>Creating a reproducibility package</li>
+			<li>Writing the whole paper in RMarkdown</li></ul>
+		</td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td>10/24/2019</td>
+
+		<td></td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>10/31/2019</td>
+
+		<td>Entering the <i>tidyverse</i>
+			<ul><li>Introduction to <code>dplyr</code></li></ul>
+		</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>11/7/2019</td>
+
+		<td>More explorations in the <i>tidyverse</i>
+			<ul>
+			<li>Using <code>tidyr</code> and <code>dplyr</code></li>
+			<li>Pipelines and plotting</li></ul>
+	
+		</td>
+		<td></td>
+	</tr>
+
+
+
+
+	<tr>
+		<td>11/14/2019</td>
+		<td>Working with other types of data
+			<ul><li>Geolocation data and visualization</li></ul>
+			<li>Textual data</li>
+			</ul>
+		</td>
+		<td></td>
+	</tr>
+
+
+	<tr>
+		<td>11/21/2019</td>
+		<td>RMarkdown for presentations and Working on your data</td>
+		<td>
+			<ul>
+				<li>The remaining lab sessions will focus on giving support for working with your data and 
+		creating the reproducibility package etc.</li>
+				<li>Cover requested topics or review of previous topics</li>
+			</ul>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td><b>** TUESDAY **</b> 11/<u>26</u>/2019</td>
+		<td>Working on your data
+		</td>
+		<td>N.B. Thanksgiving week - Tuesday seminar will be lab session.</td>
+	</tr>
+
+
+	<tr>
+		<td>12/5/2019</td>
+		<td>Working on your data and special topics</td>
+		<td></td>
+	</tr>
+
+</tbody>
+
+
+
 
 </table>
