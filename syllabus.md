@@ -62,4 +62,4 @@ _Pop writing (10%)._ 1000 word pop summary of your work. We will workshop these 
 
 
 
-#### [Course schedule and readings](schedule.md)
+#### [Course schedule and readings](schedule.html)
