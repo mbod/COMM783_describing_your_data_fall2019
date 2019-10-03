@@ -1,0 +1,209 @@
+---
+title: "Data visualization - Some ggplot2 examples"
+output: 
+  html_document:
+    keep_md: yes
+---
+
+#### Some examples of data visualizations using `ggplot2`
+
+* using the sleeping mammals dataset (`msleep`) included with `ggplot2`
+* also flu activity reports from CDC for 2008-9 flu season
+* and shooting victim data from Philadelphia
+
+
+```{r}
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(ggmap)
+library(dplyr)
+```
+
+
+```{r}
+msleep %>% head(10) %>% kable() %>% kable_styling()
+``` 
+
+```{r}
+
+msleep %>% 
+    summarise(mean_sleep_total=mean(sleep_total))
+
+```
+
+
+```{r}
+ggplot(msleep, mapping=aes(x=sleep_total)) + geom_histogram(binwidth = 1)
+```
+
+```{r}
+msleep %>% 
+  group_by(vore) %>%
+    summarise(mean_sleep_total=mean(sleep_total))
+
+
+```
+
+```{r}
+
+msleep %>%
+  ggplot(aes(x=sleep_total, fill=vore)) + geom_histogram(binwidth = 1, alpha=0.5) +
+     theme_bw()
+
+```
+
+```{r}
+
+msleep %>%
+  ggplot(aes(x=sleep_total, fill=vore)) + geom_density(alpha=0.5) +
+     theme_bw()
+
+```
+
+
+```{r}
+
+msleep %>%
+  ggplot(aes(x=sleep_total, fill=vore)) + geom_density(alpha=0.5) + facet_wrap(~vore) +
+     theme_bw()
+
+```
+
+```{r}
+
+msleep %>%
+  ggplot(aes(x=sleep_total, fill=vore)) + geom_histogram(alpha=0.5, binwidth=1) + facet_wrap(~vore) +
+     theme_bw() 
+
+```
+
+
+
+```{r}
+
+msleep %>% 
+  group_by(order) %>%
+    summarise(mean_sleep_total=mean(sleep_total)) %>%
+        ggplot(mapping=aes(x=order, y=mean_sleep_total)) + geom_col() +
+          theme(axis.text.x = element_text(angle=90))
+
+```
+
+
+
+
+
+
+```{r}
+
+msleep %>% 
+  group_by(order, vore) %>%
+    summarise(mean_sleep_total=mean(sleep_total)) %>%
+        ggplot(mapping=aes(x=order, y=mean_sleep_total, fill=vore)) + geom_col() +
+          theme(axis.text.x = element_text(angle=90))
+
+```
+
+
+```{r}
+
+msleep %>%
+  ggplot(mapping=aes(x=brainwt, y=sleep_total)) + geom_point() + geom_smooth(method='lm')
+
+```
+
+```{r}
+
+msleep %>%
+  mutate(brainwt_ln=log(brainwt), sleep_total_ln=log(sleep_total)) %>%
+  ggplot(mapping=aes(x=brainwt_ln, y=sleep_total_ln)) + geom_point() + geom_smooth(method='lm')
+
+```
+
+
+```{r}
+
+msleep %>%
+  mutate(brainwt_ln=log(brainwt), sleep_total_ln=log(sleep_total)) %>%
+  ggplot(mapping=aes(x=brainwt_ln, y=sleep_total_ln, fill=vore)) + geom_point() + geom_smooth(method='lm')
+
+```
+
+```{r}
+
+msleep %>%
+  mutate(brainwt_ln=log(brainwt), sleep_total_ln=log(sleep_total)) %>%
+  ggplot(mapping=aes(x=brainwt_ln, y=sleep_total_ln, fill=vore)) + 
+  geom_point() + geom_smooth(method='lm') + 
+  facet_wrap(~vore) +
+  theme_linedraw()
+
+```
+
+
+
+
+```{r}
+
+flu_act <- read.csv('data/flu_activity_by_state_2008-09.csv')
+
+```
+
+
+
+```{r}
+
+flu_act %>%
+    group_by('WEEK') %>%
+      ggplot(mapping=aes(x=factor(WEEK), fill=ACTIVITYESTIMATE)) + geom_bar() +
+        labs(x='week', y='number of states', title="Flu activity level by state across 2008-9 season")
+```
+
+
+
+
+```{r}
+
+ps <- read.csv('data/Police_Stations.csv')
+ps %>% kable() %>% kable_styling()
+
+shoot_df <- read.csv('data/openphilly_data_shootings.csv')
+```
+
+
+```{r}
+
+base <- qmplot(data=ps, 
+               x=X, y=Y, 
+               geom='blank', 
+               maptype='toner-background', 
+               darken=0.4, 
+               legend = 'topleft')
+
+
+
+base + 
+  geom_point(mapping=aes(x=X, y=Y), color='blue', size=0.1) + 
+  geom_text(mapping=aes(x=X,y=Y, label=gsub('&','\n&',LOCATION)), size=2.5, alpha=0.4)
+```
+
+
+
+
+```{r}
+
+base_plot <- qmplot(data=shoot_df, 
+               x=point_x, y=point_y, 
+               geom='blank', 
+               maptype='toner-background', 
+               darken=0.4, 
+               legend = 'topleft')
+  
+  
+base_plot + geom_polygon(stat='density2d', mapping=aes(fill=stat(level)), alpha=0.3) + scale_fill_gradient2("Shootings", low='white', high='red') + geom_point(data=ps, aes(x=X, y=Y), color='blue', size=0.2)
+
+```
+
+
+
