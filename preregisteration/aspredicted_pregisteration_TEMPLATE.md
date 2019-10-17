@@ -1,0 +1,69 @@
+---
+title: "aspredicted_pregistration_TEMPLATE"
+output: 
+  html_document:
+    keep_md: yes
+---
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+
+<div class="blue">
+## Data collection. 
+* Have any data been collected for this study already? (optional)
+Please choose. Note: 'Yes' is a discouraged answer for this preregistration form.
+  * Yes, we already collected the data.
+  * No, no data have been collected for this study yet.
+  * It's complicated. We have already collected some data but explain in Question 8 why readers may consider this a valid pre-registration nevertheless.
+</div>
+
+
+```r
+  plot(1:100)
+```
+
+![](aspredicted_pregisteration_TEMPLATE_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+
+## Hypothesis. 
+* What's the main question being asked or hypothesis being tested in this study? (optional)
+
+
+## Dependent variable. 
+* Describe the key dependent variable(s) specifying how they will be measured. (optional)
+
+
+## Conditions. 
+* How many and which conditions will participants be assigned to? (optional)
+
+
+## Analyses. 
+* Specify exactly which analyses you will conduct to examine the main question/hypothesis. (optional)
+
+
+## Outliers and Exclusions. 
+* Describe exactly how outliers will be defined and handled, and your precise rule(s) for excluding observations. (optional)
+
+
+## Sample Size. 
+* How many observations will be collected or what will determine sample size? No need to justify decision, but be precise about exactly how the number will be determined. (optional)
+
+
+## Other. 
+* Anything else you would like to pre-register? (e.g., secondary analyses, variables collected for exploratory purposes, unusual analyses planned?) (optional)
+
+
+## Name. 
+* Give a title for this AsPredicted pre-registration. Suggestion: use the name of the project, followed by study description. (optional)
+
+
+## Finally. 
+* For record keeping purposes, please tell us the type of study you are pre-registering. (optional)
+ * Class project or assignment
+ * Experiment
+ * Survey
+ * Observational/archival study
+ * Other (describe below)
+
+
+## Other (optional)
