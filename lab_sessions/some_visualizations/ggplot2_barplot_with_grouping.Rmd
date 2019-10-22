@@ -219,3 +219,40 @@ df %>% group_by(cat1, cat2) %>%
      ggplot(aes(x=cat1, y=percent)) + 
         geom_bar(stat='identity', aes(fill=cat2))
 ```
+
+
+#### Adding data values to a chart
+
+* When the bars are stacked within level so all bars are the same height (i.e. 100%) you can do a reasonable visual comparisons within and between bars. However, percentages can mask uneven distribution of counts within a particular category. For instance, `cat1` values `A` and `B` may show a similar distribution of values on `cat2` but they might be 10 times as many values in `A` than `B`.
+
+
+* The `geom_text()` function allows you to add text in an additional layer in a plot. In this case we want to have the counts for each `cat2` of values `Level_1` and `Level_2`.
+
+
+```{r}
+df %>% group_by(cat1, cat2) %>%
+  summarise(cnt=n()) %>% 
+    mutate(percent=cnt/sum(cnt)*100) %>%
+     ggplot(aes(x=cat1, y=percent)) + 
+        geom_bar(stat='identity', aes(fill=cat2)) +
+          geom_text(aes(label=cnt))
+```
+
+* The y alignment is set to as the top of each bar with some offset. These can be changed with various parameters, such as `vjust` and `hjust` and the `position_dodge()` function.
+
+
+* However, here we'd like two consistent y values  for the values within each level. One way to do this is to add a `y` value to the `geom_text` aesthetics with a conditional like:
+```
+y=ifelse(cat2=='Level_1',90,10)
+```
+  __N.B.__ Here I have hard coded the two values of y as `10` and `90` - better would be to find the max values of each of the levels and do this as a variable.
+
+
+```{r}
+df %>% group_by(cat1, cat2) %>%
+  summarise(cnt=n()) %>% 
+    mutate(percent=cnt/sum(cnt)*100) %>%
+     ggplot(aes(x=cat1, y=percent)) + 
+        geom_bar(stat='identity', aes(fill=cat2)) +
+          geom_text(aes(label=cnt, y=ifelse(cat2=='Level_1',90,10)))
+```

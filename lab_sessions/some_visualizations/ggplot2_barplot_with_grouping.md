@@ -115,51 +115,51 @@ df %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> C </td>
-   <td style="text-align:left;"> Level_1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:left;"> Level_1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> A </td>
+   <td style="text-align:left;"> E </td>
    <td style="text-align:left;"> Level_2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:left;"> Level_2 </td>
+   <td style="text-align:left;"> E </td>
+   <td style="text-align:left;"> Level_1 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> A </td>
    <td style="text-align:left;"> Level_1 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> D </td>
-   <td style="text-align:left;"> Level_1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:left;"> Level_2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> D </td>
+   <td style="text-align:left;"> A </td>
    <td style="text-align:left;"> Level_1 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
-   <td style="text-align:left;"> Level_2 </td>
+   <td style="text-align:left;"> Level_1 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:left;"> Level_2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> A </td>
+   <td style="text-align:left;"> E </td>
+   <td style="text-align:left;"> Level_2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> F </td>
    <td style="text-align:left;"> Level_1 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> B </td>
+   <td style="text-align:left;"> A </td>
+   <td style="text-align:left;"> Level_2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> C </td>
+   <td style="text-align:left;"> Level_2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> C </td>
+   <td style="text-align:left;"> Level_1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> D </td>
    <td style="text-align:left;"> Level_2 </td>
   </tr>
 </tbody>
@@ -212,18 +212,18 @@ df %>% group_by(cat1, cat2) %>%
 ## # Groups:   cat1 [6]
 ##    cat1  cat2      cnt
 ##    <fct> <fct>   <int>
-##  1 A     Level_1    14
-##  2 A     Level_2     9
-##  3 B     Level_1    12
-##  4 B     Level_2     7
-##  5 C     Level_1     9
-##  6 C     Level_2     2
-##  7 D     Level_1    19
-##  8 D     Level_2     3
-##  9 E     Level_1     9
-## 10 E     Level_2     4
-## 11 F     Level_1     9
-## 12 F     Level_2     3
+##  1 A     Level_1    12
+##  2 A     Level_2     6
+##  3 B     Level_1     9
+##  4 B     Level_2     5
+##  5 C     Level_1    11
+##  6 C     Level_2     3
+##  7 D     Level_1    10
+##  8 D     Level_2     5
+##  9 E     Level_1    10
+## 10 E     Level_2     2
+## 11 F     Level_1    20
+## 12 F     Level_2     7
 ```
 
 * To create a crosstab like table you can add the `spread()` function to the end of the pipeline.
@@ -240,12 +240,12 @@ df %>% group_by(cat1, cat2) %>%
 ## # Groups:   cat1 [6]
 ##   cat1  Level_1 Level_2
 ##   <fct>   <int>   <int>
-## 1 A          14       9
-## 2 B          12       7
-## 3 C           9       2
-## 4 D          19       3
-## 5 E           9       4
-## 6 F           9       3
+## 1 A          12       6
+## 2 B           9       5
+## 3 C          11       3
+## 4 D          10       5
+## 5 E          10       2
+## 6 F          20       7
 ```
 
 * Changing the order of the variables in the `group_by()` function will change the order of the rows and columns.
@@ -281,21 +281,21 @@ df %>% group_by(cat2, cat1) %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 14 </td>
    <td style="text-align:right;"> 12 </td>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 7 </td>
   </tr>
 </tbody>
 </table>
@@ -332,74 +332,74 @@ df %>% group_by(cat1, cat2) %>%
   <tr>
    <td style="text-align:left;"> A </td>
    <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 60.87 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 66.67 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> A </td>
    <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 39.13 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 33.33 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 63.16 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 64.29 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 36.84 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 35.71 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 81.82 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 78.57 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
+   <td style="text-align:left;"> Level_2 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 21.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> D </td>
+   <td style="text-align:left;"> Level_1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 66.67 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> D </td>
+   <td style="text-align:left;"> Level_2 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 33.33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E </td>
+   <td style="text-align:left;"> Level_1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 83.33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E </td>
    <td style="text-align:left;"> Level_2 </td>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 18.18 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> D </td>
-   <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 86.36 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> D </td>
-   <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 13.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> E </td>
-   <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 69.23 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> E </td>
-   <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 30.77 </td>
+   <td style="text-align:right;"> 16.67 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:left;"> Level_1 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 75.00 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 74.07 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:left;"> Level_2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 25.00 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 25.93 </td>
   </tr>
 </tbody>
 </table>
@@ -447,3 +447,46 @@ df %>% group_by(cat1, cat2) %>%
 ```
 
 ![](ggplot2_barplot_with_grouping_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+
+
+#### Adding data values to a chart
+
+* When the bars are stacked within level so all bars are the same height (i.e. 100%) you can do a reasonable visual comparisons within and between bars. However, percentages can mask uneven distribution of counts within a particular category. For instance, `cat1` values `A` and `B` may show a similar distribution of values on `cat2` but they might be 10 times as many values in `A` than `B`.
+
+
+* The `geom_text()` function allows you to add text in an additional layer in a plot. In this case we want to have the counts for each `cat2` of values `Level_1` and `Level_2`.
+
+
+
+```r
+df %>% group_by(cat1, cat2) %>%
+  summarise(cnt=n()) %>% 
+    mutate(percent=cnt/sum(cnt)*100) %>%
+     ggplot(aes(x=cat1, y=percent)) + 
+        geom_bar(stat='identity', aes(fill=cat2)) +
+          geom_text(aes(label=cnt))
+```
+
+![](ggplot2_barplot_with_grouping_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
+* The y alignment is set to as the top of each bar with some offset. These can be changed with various parameters, such as `vjust` and `hjust` and the `position_dodge()` function.
+
+
+* However, here we'd like two consistent y values  for the values within each level. One way to do this is to add a `y` value to the `geom_text` aesthetics with a conditional like:
+```
+y=ifelse(cat2=='Level_1',90,10)
+```
+  __N.B.__ Here I have hard coded the two values of y as `10` and `90` - better would be to find the max values of each of the levels and do this as a variable.
+
+
+
+```r
+df %>% group_by(cat1, cat2) %>%
+  summarise(cnt=n()) %>% 
+    mutate(percent=cnt/sum(cnt)*100) %>%
+     ggplot(aes(x=cat1, y=percent)) + 
+        geom_bar(stat='identity', aes(fill=cat2)) +
+          geom_text(aes(label=cnt, y=ifelse(cat2=='Level_1',90,10)))
+```
+
+![](ggplot2_barplot_with_grouping_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
